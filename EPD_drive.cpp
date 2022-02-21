@@ -824,8 +824,8 @@ void Duck_EPD::deepsleep(void)
   {
     ReadBusy_long();
 	  EPD_WriteCMD_p1(0x10,0x01);
-	  //EPD_WriteCMD_p1(0x22,0xc0);//power off
-	  //EPD_WriteCMD(0x20);
+	 // EPD_WriteCMD_p1(0x22,0xc0);//power off
+	  EPD_WriteCMD(0x20);
   }
  if(EPD_Type==WF29||EPD_Type==WF58||EPD_Type==WF29BZ03||EPD_Type==C154)
   {
@@ -1329,6 +1329,7 @@ void Duck_EPD::EPD_Init(void)
     }
   if(EPD_Type==OPM42)
   {
+EPD_WriteCMD_p1(0x22,0xc0);//poweron
     EPD_WriteCMD(0x74);       // 
     EPD_WriteData(0x54);    // 
     EPD_WriteCMD(0x7E);       // 
@@ -1502,14 +1503,17 @@ void Duck_EPD::EPD_init_Part(void)
 	EPD_Init();			// display
 	EPD_Write((unsigned char *)LUTDefault_part,sizeof(LUTDefault_part));
 	EPD_WriteCMD_p1(0x22,0xc0);//poweron
-  EPD_WriteCMD(0x20);   		
+
+ 	 EPD_WriteCMD(0x20);   		
    }
-	if(EPD_Type==OPM42)
+if(EPD_Type==OPM42)
  {
+//EPD_WriteCMD_p1(0x22,0xc0);//poweron
   EPD_Init();
   EPD_WriteCMD(0x21); 
   EPD_WriteData(0x00);
   EPD_Write((unsigned char *)LUTDefault_part_opm42,sizeof(LUTDefault_part_opm42));
+//EPD_WriteCMD_p1(0x22,0xc0);//poweron
   }
 	if(EPD_Type==WF29)
   {  
