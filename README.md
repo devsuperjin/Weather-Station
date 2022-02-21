@@ -1,6 +1,6 @@
 # Weather-Station
 
-# 技术特征
+## 技术特征
 
 本项目使用Arduino开发
 
